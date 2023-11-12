@@ -4,6 +4,7 @@ import Search from '../../component/search'
 import React, { useState } from 'react'
 import { GlobalProvider, useGlobal } from '@/context/global'
 import Trending from '@/component/trending'
+import Searchelement from '@/component/searchelement'
 
 export default function Giphy() {
 
@@ -16,7 +17,7 @@ export default function Giphy() {
        case 'favourite':
          return <Trending/>
        case 'search':
-        return <Trending/>
+        return <Searchelement/>
        default:
         return <Trending/>    
     }
@@ -24,7 +25,7 @@ export default function Giphy() {
   
   return (
     <>
-      <Search/>
+      <Search setRendered={setRendered}/>
       <div className='flex flex-row items-center justify-center gap-10 mt-2'>
         <Button
           name={'Favourite'}

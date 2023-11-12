@@ -1,6 +1,6 @@
 'use client'
 import { globalReducer } from '@/reducers/globalReducer';
-import { GET_TRENDING, LOADING } from '@/utils/globalAction';
+import { GET_SEARCH, GET_TRENDING, LOADING } from '@/utils/globalAction';
 import React, {useContext, useEffect, useReducer} from 'react';
 import axios from "axios";
 
@@ -24,15 +24,23 @@ export const GlobalProvider = ({children}) => {
         const res = await axios.get(`${baseUrl}/trending?api_key=${apikey}&limit=30`)
         dispatch({type: GET_TRENDING, payload: res.data.data})
     }
+
+    const searchGiffs = async (query) =>{
+       dispatch({type: LOADING});
+       const res = await axios.get(`${baseUrl}/search?api_key=${apikey}&q=${query}&limit=18`)
+       dispatch({type: GET_SEARCH, payload: res.data.data})
+    }
     
 
     useEffect(() =>{
         getTrending();
+       
     }, [])
 
     return (
         <GlobalContext.Provider value={{
-            ...state
+            ...state,
+            searchGiffs
         }}>
              {children}
         </GlobalContext.Provider>

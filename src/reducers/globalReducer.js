@@ -1,5 +1,5 @@
 'use client';
-import { GET_TRENDING, LOADING } from '@/utils/globalAction';
+import { GET_SEARCH, GET_TRENDING, LOADING } from '@/utils/globalAction';
 import React from 'react';
 
 export const globalReducer = (state, action) => {
@@ -11,6 +11,12 @@ export const globalReducer = (state, action) => {
             ...state, 
             loading: false, 
             trending: action.payload
+        }
+    case GET_SEARCH:
+        return {
+             ...state,
+              loading: false,
+              searchResults: action.payload
         }
     default:
         break    
