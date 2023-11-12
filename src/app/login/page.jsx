@@ -63,7 +63,7 @@ export default function Login() {
               <p>
                 Create an account?{" "}
                 <span>
-                  <Link href="/signup">Sign up</Link>
+                  <Link href="/register">Sign up</Link>
                 </span>
               </p>
             </div>
