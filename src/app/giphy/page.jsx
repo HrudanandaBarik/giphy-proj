@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { GlobalProvider, useGlobal } from '@/context/global'
 import Trending from '@/component/trending'
 import Searchelement from '@/component/searchelement'
+import Favourite from '@/component/favourite'
 
 export default function Giphy() {
 
@@ -15,7 +16,7 @@ export default function Giphy() {
       case 'trending':
         return <Trending/>
        case 'favourite':
-         return <Trending/>
+         return <Favourite rendered={rendered}/>
        case 'search':
         return <Searchelement/>
        default:

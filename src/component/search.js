@@ -14,6 +14,10 @@ export default function Search({setRendered}) {
      searchGiffs(query)
      setRendered('search')
      setQuery('')
+
+     if(query === ''){
+       setRendered('trending');
+     }
   }
 
   const handleChange = (e)=> {

@@ -1,5 +1,5 @@
 'use client';
-import { GET_SEARCH, GET_TRENDING, LOADING } from '@/utils/globalAction';
+import { ADD_TO_FAVOURITES, GET_FAVOURITES, GET_SEARCH, GET_TRENDING, LOADING } from '@/utils/globalAction';
 import React from 'react';
 
 export const globalReducer = (state, action) => {
@@ -18,6 +18,18 @@ export const globalReducer = (state, action) => {
               loading: false,
               searchResults: action.payload
         }
+
+    case ADD_TO_FAVOURITES:
+            return {
+                ...state,
+                favourites: [...state.favourites, action.payload]
+            }   
+            
+    case GET_FAVOURITES:
+           return{
+             ...state,
+             favourites: action.payload
+           }        
     default:
         break    
    }

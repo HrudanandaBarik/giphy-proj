@@ -11,9 +11,10 @@ export default function GiffItem({
     id, 
     title, 
     embed_url, 
+    rendered,
     url: link, 
     images: {original: {url}}}) {
-      const {loading} = useGlobal()
+      const {loading, saveToFavourites, removeFromLocalStorage} = useGlobal()
 
       const [modal, setModal] = useState(false);
   return (
@@ -24,7 +25,27 @@ export default function GiffItem({
             setModal(true)
         }}>
            <img src={url} alt={title}/>
-           <div className='love'>
+           <div className='love' onClick={() => {
+            if(rendered === 'favourite'){
+               removeFromLocalStorage({
+                  id,
+                  title,
+                  url: link,
+                  images: {
+                     original:{url}
+                  }
+               })
+            } else{
+              saveToFavourites({
+                   id,
+                   title,
+                   url: link,
+                   images: {
+                      original:{url}
+                   }
+            })
+            }
+           }}>
              <FontAwesomeIcon icon={faHeart} />
            </div>
         </div>
